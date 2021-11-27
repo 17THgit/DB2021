@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>COVID-19 PATIENT DB ADMIN LOGIN</title>
+<SCRIPT language = "JavaScript">
+	function pwChk() {
+		if (document.form1.pw.value == "1234")
+			location.href ="adminmenu.html";
+		else
+			alert("incorrect password!")
+	}
+</SCRIPT>
+</head>
+<body>
+	<!-- title -->
+	<div style = "text-align: center; font-size: 40px; font-family: 굴림체">
+	ADMINISTRATOR LOGIN</div>
+	
+	<!-- password check -->
+	<form name = "form1">
+	password : <INPUT type = "password" size = 12 name = "pw">
+	<INPUT type = "button" value = "login" onClick = "pwChk()">
+	</form>
+	
+</body>
+</html>
