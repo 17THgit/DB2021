@@ -14,10 +14,10 @@
 	<div style="font-size:40px">COVID-19 PATIENT DATABASE MAIN MENU</div>
 <%
 	String serverIP = "localhost";
-	String strSID = "xe";
+	String strSID = "xe";	//MAC 기준(WINDOWS는 orcl)
 	String portNum = "1521";
-	String user = "TPPHASE2";
-	String pass = "comp322";
+	String user = "TPPHASE2";	//DB ID
+	String pass = "comp322";	//DB PW
 	String url = "jdbc:oracle:thin:@" + serverIP + ":" + portNum + ":" + strSID;
 	
 	Connection conn = null;
