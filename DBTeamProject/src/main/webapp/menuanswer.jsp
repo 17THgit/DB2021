@@ -97,7 +97,7 @@
 			}
 			out.println("</table>");
 
-	query = "SELECT A.sname, A.start_date, T.place, C.treatment, C.finish_date,"
+	query = "SELECT A.sname AS Symptom, A.start_date, T.place, C.treatment, C.finish_date,"
 			+ " B.bssn, B.l_name, B.f_name, B.sex, B.phone_num"
 			+ " FROM PATIENT P LEFT JOIN REGION R ON P.rno = R.r_id"
 			+ " LEFT JOIN HOSPITAL H ON P.hno = H.h_id AND R.r_id = H.rno"
