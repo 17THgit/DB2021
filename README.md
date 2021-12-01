@@ -27,8 +27,8 @@ PATIENT : 코로나19 감염된 환자들의 정보로 이름, 주민번호, 성
 그 외 쿼리들을 실행 시 모든 쿼리 결과가 출력되므로 정보의 양이 많습니다.
 
 유의 사항
-1. eclipse EE를 통해 dynamic web project로 Team11-Phase4를 새로 만든 후 Team11-Phase4의 구성 요소들을 복사 후 붙여넣기 한 후에 main.html을 실행합니다.
-2. 실행 전 DB에 접근하는 모든 jsp 파일들에 작성된 서버, DB 이름, 비밀번호를 개인의 환경에 맞게 설정해 주어야 합니다.
+1. eclipse EE를 통해 dynamic web project로 Team11-Phase4를 새로 만든 후 Team11-Phase4의 구성 요소들을 복사 후 붙여넣기하고 external library로 본인 경로의 ojdbc.8 추가 후 main.html을 실행합니다.
+2. 실행 전 DB에 접근하는 모든 jsp 파일들에 작성된 (xe, orcl), DB 이름, 비밀번호를 개인의 환경에 맞게 설정해 주어야 합니다.
 3. 환자 정보의 도시 이름과 환자 이름은 각각 따로 쿼리문을 실행합니다. 즉, 환자 정보 검색과 도시 확진자 수 검색은 별개입니다.
 4. 관리자 계정 비밀번호는 adminlogin.html에서 변경할 수 있습니다. (Default:1234)
 5. 데이터 삽입/수정/삭제 시 환자증상여부의 Start date 와 완치정보의 Finish date 는 YY/MM/DD 형식으로 작성해야 합니다.
