@@ -161,6 +161,7 @@
 			{
 				out.println("<tr>");
 				out.println("<td>" + rs.getString(1) + "</td>");
+				out.println("<td>" + rs.getString(2) + "</td>");
 				out.println("</tr>");
 			}
 			out.println("</table>");
