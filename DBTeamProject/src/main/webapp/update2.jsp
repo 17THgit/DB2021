@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" import="java.text.*, java.sql.*" %>
+<%@ page language="java" import="java.text.*, java.sql.*, java.util.Date"%>
 <!DOCTYPE html>
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
@@ -26,9 +26,9 @@
 	<%
 	
 		String serverIP = "localhost";
-		String strSID = "xe";
+		String strSID = "orcl";
 		String portNum = "1521";
-		String user = "DBTeamProject";
+		String user = "university";
 		String pass = "comp322";
 		String url = "jdbc:oracle:thin:@" + serverIP + ":" + portNum + ":" + strSID;
 		
@@ -238,6 +238,55 @@
 	}
 	
 	else if (num == 4) {
+		String sql = "", Sname = "";
+		String Start_Date = "";
+		String Pssn = request.getParameter("ssn");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yy/MM/dd");
+		try {
+			conn.setAutoCommit(false);
+			rs = null;                  
+			sql = String.format("SELECT * FROM HAS WHERE Pssn = '%s'", Pssn);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Sname = rs.getString(2);
+				Start_Date = transFormat.format(rs.getDate(3));
+			}
+			
+			rs.close();
+			
+		}catch(SQLException ex) {
+			out.println("sql error = " + ex.getMessage());
+		}
+		
+		temp = request.getParameter("sname");
+		if (!temp.equals(""))
+			Sname = temp;
+		
+		temp = request.getParameter("start_date");
+		if (!temp.equals(""))
+			Start_Date = temp;
+		
+		try {
+			out.println(Pssn + " " + Sname + " " + Start_Date);
+			sql = String.format("UPDATE HAS SET Sname = '%s', Start_date = '%s' WHERE Pssn = '%s'", Sname, Start_Date, Pssn);
+			res = stmt.executeUpdate(sql);
+			
+			if (res == 1) {
+				out.println("이 업데이트 되었습니다");
+			}
+			else
+				out.println("업데이트 실패!");
+			conn.commit();
+			
+		}catch(SQLException e) {
+			out.println("sql error = " + e.getMessage());
+		}
+		
+	}
+	
+	else if (num == 5) {
 		String sql = "", Pssn = "", Bssn = "", Phone = "", Fname = "", Lname = "", Sex = "";
 		
 		Pssn = request.getParameter("pssn");
@@ -304,7 +353,7 @@
 		}
 	}
 	
-	else if (num == 5) {
+	else if (num == 6) {
 		String sql = "", Place = "";
 		String Pssn = request.getParameter("pssn");
 		int P_id = 0;
@@ -347,10 +396,10 @@
 		}
 	}
 	
-	else if (num == 6) {
+	else if (num == 7) {
 		String sql = "", Treatment = "", Finish_Date = "";
 		String Pssn = request.getParameter("ssn");
-		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yy/MM/dd");
 		int C_id = 0;
 	
 		try {
@@ -363,7 +412,7 @@
 			while(rs.next()) {
 				C_id = rs.getInt(2);
 				Treatment = rs.getString(3);
-				Finish_Date = rs.getString(4);
+				Finish_Date = transFormat.format(rs.getDate(4));
 			}
 			rs.close();
 			
@@ -374,6 +423,7 @@
 		temp = request.getParameter("treatment");
 		if(!temp.equals(""))
 			Treatment = temp;
+		
 		temp = request.getParameter("finish_date");
 		if(!temp.equals(""))
 			Finish_Date = temp;
